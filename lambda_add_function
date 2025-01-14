@@ -1,0 +1,29 @@
+import json
+
+def lambda_handler(event, context):
+    try:
+        a = int(event['a'])
+        b = int(event['b'])
+
+        result = a + b
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps({
+                'result': result
+            })
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps({
+                'error': str(e)
+            })
+        }
+
+event = {
+    'a': 8,
+    'b': 7
+}
+context = {}
+print(lambda_handler(event, context))
